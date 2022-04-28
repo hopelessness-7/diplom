@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>О компании</title>
+</head>
+<body class="body_company" id="app">
+
+    <!-- Шапка -->
+    <div class="navbars">
+        <div><a href="index.html"><img src="/imgs/logo.png" alt=""></a></div>
+        <div class="navbars_element">
+            <div class="navbars_element_item">
+                <a href="index.html" class="">Главная</a>
+            </div>
+            <div class="navbars_element_item">
+                <a href="flight.html" class="">Поиск</a>
+            </div>
+            <div class="navbars_element_item">
+                <a href="booking.html" class="">Бронирования</a>
+            </div>
+            <template v-if="isLoggedIn">
+                <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn">{{ username }}</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="profile.html">Профиль</a>
+                        <a class="" href="#" @click.prevent="logout">Выход</a>
+                    </div>
+                </div>
+            </template>
+            <template v-else>
+                <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn">Личный кабинет</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="login.html">Вход</a>
+                        <a class="" href="register.html">Регистрация</a>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+
+    <!-- Информация о компании, работниках  -->
+    <div class="bg_img">
+    
+        <div class="flex">
+            <div class="element">
+                <h2 class="">Общая информация</h2>
+                <p class="">
+                    Авиакомпания «Феникс» - маленькая Красноярская компания, основанная 24 марта 2005 года, которая постепенно выходит на мировой уровень.В штате компании числится 350 квалифицированных сотрудников. Более 200 000 часов налета. 
+                    География полетов – в настоящее время маршрутами красноярской авиакомпании охвачена территория России от Алтая до Камчатки. Воздушные суда с логотипом «Феникс» бывают и на Северном полюсе, выполняя ответственную задачу по обеспечению работы Сезонной дрейфующей станции Русского географического общества.
+                    <br><b>Приоритетные направления деятельности авиакомпании:</b><br>
+                    1. коммерческие воздушные перевозки пассажиров и грузов;<br>
+                    2. услуги базирования, хранения, заправки воздушных судов;<br>
+                </p>
+            </div>
+            <div>
+                <div>
+                    <img src="imgs/company_3.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    
+        <div class="staff">
+            <div class="element">
+                <h2 class="">Наши сотрудники</h2>
+            </div>
+            <div class="element_img">
+                <img src="imgs/company.jpg" alt="" style="margin-top: 15px;">
+                <img src="imgs/company_1.jpg" alt="" style="margin-top: 15px;">
+                <img src="imgs/company_2.jpg" alt="" style="margin-top: 15px;">
+            </div>
+            <div class="element_img">
+                <img src="imgs/company.jpg" alt="" style="margin-top: 15px;">
+                <img src="imgs/company_1.jpg" alt="" style="margin-top: 15px;">
+                <img src="imgs/company_2.jpg" alt="" style="margin-top: 15px;">
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Подвал -->
+    <footer class="">
+        <div class="footer">
+            <div><img src="/imgs/logo.png" alt=""></div>
+            <nav>
+                <ul class="">
+                    <li class=""><a href="#" class="">Поиск</a></li>
+                    <li class=""><a href="#" class="">О нас</a></li>
+                    <li class=""><a href="#" class="">Акци</a></li>
+                    <li class=""><a href="#" class="">Горячии направляения</a></li>
+                    <li class=""><a href="#" class="">Связаться с нами</a>
+                    </li>
+                </ul>
+            </nav>
+            <div>
+                <ul class="">
+                    <li class=""><a href="tel:+7(999)3065836" class="">+7 (999) 306 58 36</a></li>
+                    <li class=""><a href="mailto:flightBooking@mail.ru" class="">flightBooking@mail.ru</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Подключение VUE.JS -->
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <!-- Подключение метода  (отправлка формы обратной связи) -->
+    <script src="js/indexTools.js"></script>
+
+    <!-- Функция - кнопка dropDown -->
+    <script src="js/option/dropdownButton.js"></script>
+</body>
+</html>

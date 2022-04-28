@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Отмена бронирования</title>
+</head>
+<body class="ClosingBookings" id="app">
+
+    <!-- Шапка -->
+    <div class="navbars">
+        <div><a href="index.html"><img src="/imgs/logo.png" alt=""></a></div>
+        <div class="navbars_element">
+            <div class="navbars_element_item">
+                <a href="index.html" class="">Главная</a>
+            </div>
+            <div class="navbars_element_item">
+                <a href="flight.html" class="">Поиск</a>
+            </div>
+            <div class="navbars_element_item">
+                <a href="booking.html" class="">Бронирования</a>
+            </div>
+            <template v-if="isLoggedIn">
+                <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn">{{ username }}</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="profile.html">Профиль</a>
+                        <a class="" href="#" @click.prevent="logout">Выход</a>
+                    </div>
+                </div>
+            </template>
+            <template v-else>
+                <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn">Личный кабинет</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="login.html">Вход</a>
+                        <a class="" href="register.html">Регистрация</a>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+
+    <!-- Форма для отмены бронирования -->
+    <div class="ClosingBookingsForm">
+    
+        <div class="flex">
+
+            <div class="">
+                <h3>Напишите, пожалуйста, данные о отменяемом бронировании</h3>
+                <ul>
+                    <li>Укажите код бронирования</li>   
+                    <li>Укажите причину отмены бронирования</li>
+                    <li>Укажите дату регистрации на бронирование</li>
+                </ul>
+            </div>
+            <div class="element" id="app">
+
+                <div v-if="errorsArr.length > 0" class="errorx">
+                    <div v-for=" error in errorsArr" class="" role="alert">
+                        {{error}}
+                    </div>
+                </div>
+
+                <form action="" @submit.prevent="ClosingBookings">
+                    <div>
+                        <input type="text" name="" id="" placeholder="Ваше имя" class="" v-model="user">
+                    </div>
+                    <div>
+                        <input list="codeArrow" type="text" id="" placeholder="Код бронирования" class="" v-model="BookingCode">
+                        <datalist id="codeArrow">
+                            
+                        </datalist>
+                    </div>
+                    <div>
+                        <textarea name="" id="" cols="30" rows="10" placeholder="Описание причины" class="" v-model="description"></textarea>
+                    </div>
+                    <div class="form_elements">
+                        <button type="submit" class="">
+                            <span v-if="loadingContent" class="text-white">Loading...</span>
+                            <span v-else> Отправить </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    
+    </div>
+
+    <!-- Подвал -->
+    <footer class="">
+        <div class="footer">
+            <div><img src="/imgs/logo.png" alt=""></div>
+            <nav>
+                <ul class="">
+                    <li class=""><a href="#" class="">Поиск</a></li>
+                    <li class=""><a href="#" class="">О нас</a></li>
+                    <li class=""><a href="#" class="">Акци</a></li>
+                    <li class=""><a href="#" class="">Горячии направляения</a></li>
+                    <li class=""><a href="#" class="">Связаться с нами</a>
+                    </li>
+                </ul>
+            </nav>
+            <div>
+                <ul class="">
+                    <li class=""><a href="tel:+7(999)3065836" class="">+7 (999) 306 58 36</a></li>
+                    <li class=""><a href="mailto:flightBooking@mail.ru" class="">flightBooking@mail.ru</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Подключение VUE.JS -->
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <!-- Подключение метода  (отправлка формы на отмену бронирования) -->
+    <script src="js/indexTools.js"></script>
+
+    <!-- Функция - кнопка dropDown -->  
+    <script src="js/option/dropdownButton.js"></script>
+
+    <!-- Помещении массива кодов бронирования из локального хранлищя в dataList -->
+    <script>
+        let data = JSON.parse(localStorage.getItem ("codeAll"));
+        let opt = '';
+        for (var i in data) {
+            opt += '<option value="' + data[i] + ' ">';
+        }
+        document.getElementById('codeArrow').innerHTML += opt;
+    </script>
+</body>
+</html>

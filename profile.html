@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Профиль</title>
+</head>
+<body>
+
+    <div id="app" class="body_profile">
+
+        <!-- Шапка -->
+        <div class="navbars">
+            <div><img src="/imgs/logo.png" alt=""></div>
+            <div class="navbars_element">
+                <div class="navbars_element_item">
+                    <a href="index.html" class="">Главная</a>
+                </div>
+                <div class="navbars_element_item">
+                    <a href="flight.html" class="">Поиск</a>
+                </div>
+                <div class="navbars_element_item">
+                    <a href="booking.html" class="">Бронирования</a>
+                </div>
+                <template v-if="isLoggedIn">
+                    <div class="dropdown">
+                        <button onclick="myFunction()" class="dropbtn">{{ username }}</button>
+                        <div id="myDropdown" class="dropdown-content">
+                            <a href="profile.html">Профиль</a>
+                            <a class="" href="#" @click.prevent="logout">Выход</a>
+                        </div>
+                    </div>
+                </template>
+                <template v-else>
+                    <div class="dropdown">
+                        <button onclick="myFunction()" class="dropbtn">Личный кабинет</button>
+                        <div id="myDropdown" class="dropdown-content">
+                            <a href="login.html">Вход</a>
+                            <a class="" href="register.html">Регистрация</a>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    
+        <h1 v-if="loadingContent" class="text-center">Loading...</h1>
+    
+        <div class="main">
+
+            <!-- Вывод информации о пользователе  -->
+            <div v-else class="card_user">
+                <div class="card_user_title"><h5 class="">Информация о пользователе</h5></div>
+                <div class="card_user_body">
+                    <p class=""><b>Имя: </b>{{ user.first_name }}</p>
+                    <p class=""><b>Фамилия: </b>{{ user.last_name }}</p>
+                    <p class=""><b>Телефон: </b>{{ user.phone }}</p>
+                    <p class=""><b>Номер документа: </b>{{ user.document_number }}</p>
+                </div>
+            </div>
+
+            <!-- Вывод информации о бронировании - код бронирования -->
+            <div v-if="page.showMyBookingsBlock" class="card_booking">
+                <div class="card_booking_title">
+                    <h5 class=""> Мои бронирования</h5>
+                </div>
+                <div class="card_booking_body" v-for="b in myBookings">
+                    <p class="">Booking code:</p>
+                    <a href="booking.html" onclick="namef(this.innerHTML)" class="bookingCode">{{ b.code }}</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Функция помещения кода бронирования в локальное хранилице для передачи на страницу booking.html -->
+    <script src="js/option/storage.js"> </script>
+
+    <!-- Подключение VUE.JS -->
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <!-- Подключение метода (Вывод данных пользователя, вывод данных о бронировании) -->
+    <script src="js/profile.js"></script>
+
+    <!-- Функция - кнопка dropDown -->
+    <script src="js/option/dropdownButton.js"></script>
+</body>
+</html>

@@ -1,0 +1,1589 @@
+/* Общие элементы */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+}
+
+h1 {
+    font-size: 35px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+h4, h5, h6 {
+    font-size: 18px;
+}
+
+button {
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.error {
+    margin: 0 auto;
+    color: red;
+    text-decoration: underline;
+    width: 80%;
+
+}
+
+.btn_blue {
+    width: 200px;
+    height: 60px;
+    background-color: rgb(72, 72, 250);
+    border-radius: 5px;
+    color: #fff;
+    margin-top: 15px;
+}
+
+.navbars {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin: 0 auto;
+    width: 80%;
+    align-items: center;
+    margin-bottom: 45px;
+}
+
+.navbars .navbars_element {
+    display: flex;
+    align-items: center;
+}
+.navbars .navbars_element .navbars_element_item {
+    margin-left: 25px;
+}
+
+.navbars .navbars_element .navbars_element_item a{
+    color: white;
+    text-decoration: underline;
+}
+
+.navbars .navbars_element .navbars_element_item a:hover{
+    color: #5EB85C;
+    text-decoration: none;
+}
+
+.dropbtn {
+    background-color: #5EB85C;
+    color: white;
+    width: 150px;
+    height: 45px;
+    margin-left: 25px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+  
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #5fa65e;
+}
+  
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+  
+.dropdown-content {
+    display: none;
+    position: absolute;
+    margin-left: 25px;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+  
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+  
+.dropdown a:hover {background-color: #ddd;}
+  
+.show {display: block;}
+
+.form_flights {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.form_flights form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    
+}
+
+.form_flights form select {
+    padding: 25px;
+    width: 200px;
+    background-color: #ffffff10;
+    border: none;
+    border-radius: 5px;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    color: #ffffff50;
+    outline: none;
+}
+
+.form_flights form select option {
+    color: #000;
+}
+
+.form_flights form .form_elements input{
+    padding: 25px;
+    width: 200px;
+    background-color: #ffffff10;
+    border: none;
+    border-radius: 5px;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    color: #ffffff50;
+    outline: none;
+    
+}
+
+.form_flights form .form_elements .btn{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 24px 80px;
+    background-color: #5EB85C;
+    color: #fff;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.form_flights form .form_elements .btn {
+    color: #fff;
+    text-decoration: none;
+}
+
+.form_flights form .form_elements button {
+    width: 200px;
+    height: 65px;
+    background-color: #5EB85C;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.form_flights form .form_elements button a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.title_search{
+    margin: 0 auto;
+    width: 80%;
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 45px;
+}
+
+.top_line {
+    border-bottom: 1px;
+    background-color: #ffffff50;
+    width: 200px;
+    height: 5px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/* index.html - css */
+
+.index {
+    background-color: #0E1635;
+}
+
+.hero {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('/imgs/hero img.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    height: 800px;
+}
+
+.hero .banner {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.hero .banner .img_banner_2 {
+    margin-left: -143px;
+    margin-bottom: -129px;
+}
+
+.hero .banner h1 {
+    margin-top: -220px;
+    margin-left: 40px;
+    font-size: 55px;
+    font-weight: bold;
+}
+
+.hero .banner h3 {
+    margin-top: 101px;
+    margin-left: 100px;
+    font-size: 21px;
+}
+
+.search {
+    margin-top: -140px;
+    padding-top: 40px;
+    padding-bottom: 40px ;
+    background-color: #ffffff10;
+    border-radius: 5px;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    margin-bottom: 24px;
+}
+
+.company {
+    margin-top: 80px;
+}
+
+.company .block_company {
+    display: flex;
+}
+
+.company .block_company .element {
+    margin-top: 25px;
+    display: flex;
+    width: 77%;
+    justify-content: space-between;
+}
+
+.company .block_company .element .block_company_text {
+    margin-left: -60px;
+}
+
+.company .block_company .element .block_company_text h2 {
+    margin:15px 0px 57px 0;
+}
+
+.company .block_company .element .block_company_text p {
+    line-height: 25px;
+}
+
+.company .block_company div a {
+    text-decoration: underline;
+
+}
+
+.company .block_company div a:hover {
+    color: #5EB85C;
+    text-decoration: none;
+}
+
+
+.stocks {
+    background-color: #ffffff10;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    color: #ffffff50;
+    margin-top: 80px;
+    padding-top: 45px;
+    padding-bottom: 45px;
+    color: #ffffff;
+    text-align: left;
+    text-align: center;
+}
+
+.stocks .card_stocks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 80%;
+}
+
+.stocks .card_stocks div h3 {
+    margin-bottom: 10px;
+}
+
+.stocks img {
+    width: 100px;
+    margin-bottom: 10px;
+    
+}
+
+.feedback {
+    width: 100%;
+    height: 650px;
+    margin-top: 85px;
+    background-image: url('/imgs/123.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+  
+}
+
+.feedback .feedback_body {
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.feedback .feedback_body .feedback_body_element div img {
+    margin-left: -95px;
+}
+
+.feedback .feedback_body .feedback_body_element div h2 {
+    margin-bottom: 15px;
+    margin-top: -250px;
+}
+
+.feedback .feedback_body .feedback_body_element div form input {
+    padding: 15px;
+    width: 540px;
+    height: 95px;
+    background-color: #ffffff10;
+    border: none;
+    border-radius: 5px;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    color: #ffffff50;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.feedback .feedback_body .feedback_body_element div form textarea {
+    background-color: #ffffff10;
+    border: none;
+    width: 540px;
+    height: 300px;
+    padding: 15px;
+    border-radius: 5px;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    color: #ffffff50;
+    resize: none;
+    margin-bottom: 15px;
+    outline: none;
+}
+.feedback .feedback_body .feedback_body_element div button {
+    width: 250px;
+    height: 65px;
+    background-color: #5EB85C;
+    color: #fff;
+    border-radius: 5px;
+}
+
+
+.feedback .feedback_body .img_airplane {
+    width: 750px;
+}
+
+footer {
+    margin-top: 180px;
+    border-top: 1px solid #ffffff30;
+    margin-bottom: 50px;
+}
+.footer {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 45px;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+}
+
+ul li {
+    margin-left: 15px;
+}
+
+.footer a{
+    color: white;
+    text-decoration: underline;
+}
+
+.footer a:hover{
+    color: #5EB85C;
+    text-decoration: none;
+}
+
+/* flight.html -css */
+
+.flights {
+    width: 100%;
+    
+}
+
+.bodyFlight {
+    background-color: #0E1635;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('/imgs/image 11.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+
+
+.flights_card {
+    margin: 0 auto;
+    width: 80%;
+    margin-top: 45px;
+    display: flex;
+}
+
+.flights_card_option {
+    margin-right: 25px;
+}
+
+.options_flights_title {
+    padding: 40px;
+    text-align: center;
+    background-color: #ffffff10;
+    border-radius: 5px;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    margin-bottom: 24px;
+}
+
+.options_flights_filter {
+    padding: 25px;
+    background-color: #ffffff10;
+    border-radius: 5px;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    margin-bottom: 24px;
+}
+
+.options_flights_filter form {
+    text-align: center;
+}
+
+.options_flights_filter .options_flights_filter_element {
+    display: flex;
+    justify-content: space-around;
+}
+
+.options_flights_filter .options_flights_filter_element input {
+    background-color: #ffffff10;
+    border: none;
+    border-radius: 10px;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    padding: 5px;
+    margin: 10px 0 10px 0;
+    outline: none;
+}
+
+.options_flights_filter form div button {
+    padding: 10px;
+    background-color: #5EB85C;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.options_flights_sorting {
+    padding: 25px;
+    background-color: #ffffff10;
+    border-radius: 5px;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.options_flights_sorting h6 {
+    margin-bottom: 10px;
+}
+
+.options_flights_sorting .options_flights_filter_element{
+    margin-bottom: 10px;
+}
+
+.options_flights_sorting .options_flights_filter_element input{
+    width: 15px;
+    height: 15px;
+    
+}
+
+.options_flights_sorting form div button {
+    padding: 10px;
+    background-color: #5EB85C;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.options_flights_goToBooking {
+    padding: 25px;
+    background-color: #ffffff10;
+    border-radius: 5px;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    margin-bottom: 25px;
+}
+
+.options_flights_goToBooking button {
+    padding: 10px;
+    background-color: #5EB85C;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.flights_card_tickets {
+    width: 100%;
+}
+
+.filtering {
+    background-color: #ffffff10;
+    border-radius: 5px;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    margin-bottom: 24px;
+}
+
+.filtering .filtering_element {
+    display: flex;
+    flex-direction: row;
+    padding: 40px;
+    text-align: left;
+    
+}
+
+.filtering .filtering_element .filtering_element_item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 92%;
+}
+
+.filtering .filtering_element .filtering_element_item .filtering_input {
+    display: flex;
+    align-items: center;
+}
+
+.tickets {
+    background-color: #ffffff10;
+    border-radius: 5px;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    margin-bottom: 24px;
+
+}
+
+.tickets .tickets_element {
+    display: flex;
+    flex-direction: row;
+    padding: 40px;
+    text-align: left;
+}
+
+.tickets .tickets_element .tickets_element_item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 92%;
+}
+
+.tickets .tickets_element .tickets_element_item .tickets_input {
+    display: flex;
+    align-items: center;
+}
+
+.booking_title {
+    text-align: center;
+    font-size: 48px;
+    margin-bottom: 45px;
+}
+
+.booking_card {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.booking_card .booking_card_element {
+    background-color: #ffffff10;
+    border-radius: 5px;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    margin-bottom: 24px;
+    padding: 40px;
+    text-align: left;
+    color: #fff;
+    font-size: large;
+}
+
+.passengers_booking h5{
+    text-align: left;
+    font-size: 24px;
+    margin-bottom: 24px;
+    color: #fff;
+}
+
+.passengers_booking .passengers_booking_element {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.passengers_booking .passengers_booking_element form div input {
+    background-color: #ffffff10;
+    border-radius: 5px;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    border: 0px;
+    padding: 5px;
+    display: flex;
+    width: 100%;
+    height: 60px;
+    margin-bottom: 15px;
+    color: #fff;
+    outline: none;
+}
+
+.passengers_booking .passengers_booking_element form div button {
+    width: 200px;
+    height: 60px;
+    background-color: #5EB85C;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.passengers_booking .passengers_booking_element .passengers_booking_element_item {
+    background-color: #ffffff10;
+    border-radius: 5px;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    padding: 24px;
+    height: 50%;
+    margin-right: 15px;
+}
+
+.passengers_booking .passengers_booking_element .passengers_booking_element_item p {
+    margin-top: 15px;
+}
+
+.passengers_booking .passengers_booking_element .passengers_booking_element_item button {
+    width: 200px;
+    height: 60px;
+    background-color: rgb(243, 68, 68);
+    border-radius: 5px;
+    margin-top: 15px;
+    color: #fff;
+}
+
+.flex-w {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.booging_false {
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.booging_false a {
+    text-decoration: underline;
+}
+
+/* booking.html -css */
+
+.booking {
+    width: 100%;
+}
+
+.body_booking {
+    background-color: #0E1635;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('/imgs/image 11.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+.main {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.card_form {
+    background-color: #ffffff10;
+    border-radius: 5px;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    padding: 50px;
+}
+
+.card_form .title {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.card_form form div input {
+    padding: 20px;
+    width: 100%;
+    background-color: #ffffff10;
+    border: none;
+    border-radius: 5px;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    color: #ffffff50;
+    outline: none;
+    margin-bottom: 20px;   
+}
+
+.card_form form div button {
+    width: 200px;
+    height: 50px;
+    background-color: #5EB85C;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.booging_card {
+    margin-top: 80px;
+}
+
+.booking_info {
+    background-color: #ffffff10;
+    border-radius: 5px;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    padding: 50px;
+}
+
+.booking_info .form_elements .btn{
+    /* display: flex;
+    align-items: center; */
+    text-align: center;
+    padding: 15px;
+    margin-top: 50px;
+    background-color: #5EB85C;
+    color: #fff;
+    border-radius: 5px;
+    width: 100px;
+}
+
+.booking_info a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.booging_card .booking_info .row1 p{
+    margin-bottom: 15px;
+}
+
+.booging_card .booking_info .row2 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.booging_card .booking_info .row2 div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+.booging_card .booking_info .row2 div p{
+    margin-bottom:15px;
+    margin-right: 45px;
+}
+
+.booging_card .booking_info .row3 {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid #ffffff30;
+}
+
+.booging_card .booking_info .row3 div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+.booging_card .booking_info .row3 div p{
+    margin-bottom:15px;
+    margin-right: 45px;
+    margin-top: 15px;
+}
+
+.booging_card .booking_info .row3 div button {
+    margin:14px 0px 25px 0px;
+}
+
+.btn_seat {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.card_seat {
+    margin-top: 25px;
+    background-color: #ffffff10;
+    border-radius: 5px;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    padding: 50px;
+    margin-bottom: 25px;
+}
+
+.card_seat form .card_seat_body{
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.card_seat .btn_form {
+    width: 150px;
+    height: 45px;
+    background-color: #5EB85C;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.card_seat_element {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+.card_seat_element .item {
+    margin-bottom: 35px;
+}
+
+.card_seat_element .item input {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+}
+
+/* profile.html */
+
+.body_profile {
+    background-color: #0E1635;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('/imgs/image 11.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    width: 100%;
+    height: 1300px;
+}
+
+.body_profile .main {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 85px;
+    
+}
+
+.card_user {
+    margin-bottom: 85px;
+    width: 450px;
+    height: 350px;
+    background-color: #ffffff10;
+    border-radius: 5px;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+}
+.card_user .card_user_title {
+    padding: 15px;
+    margin-bottom: 25px;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #ffffff20;
+} 
+
+.card_user .card_user_body {
+    margin-left: 25px;
+    margin-bottom: 25px;
+}
+
+.card_user .card_user_body p {
+    line-height: 45px;
+}
+
+.card_booking {
+    margin-bottom: 85px;
+    width: 850px;
+    background-color: #ffffff10;
+    border-radius: 5px;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.card_booking .card_booking_title {
+    padding: 15px;
+    margin-bottom: 25px;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #ffffff20;
+} 
+
+.card_booking .card_booking_body {
+    margin-left: 25px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+}
+
+.card_booking .card_booking_body p {
+    line-height: 45px;
+}
+
+.card_booking .card_booking_body p a {
+    text-decoration: underline;
+}
+
+.card_booking .card_booking_body form {
+    margin-left: 10px;
+    margin-top: 3px;
+}
+
+.bookingCode {
+    text-decoration: underline;
+}
+
+.bookingCode:hover {
+    color: #5EB85C;
+    text-decoration: none;
+}
+
+/* company.html */
+
+.body_company {
+
+    background-color: #0E1635;
+}
+
+.bg_img {
+    background-image: url('/imgs/image 11.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+.body_company .flex {
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    background-color: #ffffff10;
+    border-radius: 5px;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    padding: 30px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.body_company .flex .element p{
+    width: 95%;
+    line-height: 35px;
+    font-size: 16px;
+    text-align: justify;
+}
+
+.block_company .flex .element p b {
+    font-weight: 900;
+}
+
+.body_company .flex img {
+    width: 450px;
+    border-radius: 5px;
+}
+
+.staff {
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff10;
+    border-radius: 5px;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    margin-top: 85px;
+}
+
+.staff .element {
+    margin: 25px 25px 0px 25px;
+}
+
+.staff .element_img {
+    margin-bottom:25px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 25px;
+}
+
+.staff .element_img img {
+    width: 100%;
+    height: 310px;
+    border-radius: 5px;
+    flex-basis: 33%;
+}
+
+.card {
+    margin-top: 80px;
+}
+
+/* Сладйер на главной странице */
+
+.slider{
+    /* background-color: #ffffff10; */
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    color: #ffffff50;
+    padding-top: 45px;
+    padding-bottom: 45px;
+    color: #ffffff;
+    text-align: justify;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.slider .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 100px;
+}
+
+.slider .item {
+    text-align: left;
+    background-color: #ffffff10;
+    border: none;
+    border-radius: 5px;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    height: 250px;
+    padding: 30px;
+}
+
+.slider .item p {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 45px;
+
+}
+/* Кнопки вперед и назад */
+.slider .prev{
+    position:absolute; 
+    top:20px; 
+    left:calc(100% - 150px); 
+    background:#5EB85C; 
+    padding:30px; 
+    border-radius: 5px;
+}
+
+.slider .next {
+    position:absolute; 
+    top:20px; 
+    background:#5EB85C; 
+    padding:30px;
+    border-radius: 5px;
+    right: 0;
+}
+.active,
+.slider-dots_item:hover {
+    background-color: #aaa;
+}
+
+/* Фон кнопок вперед и назад при наведении */
+.slider .prev:hover, .slider .next:hover {
+    background-color: #7bd37a;
+}
+/* Анимация слайдов */
+.slider .item {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+/* ClosingBookings.html */
+.ClosingBookings {
+    background-color: #0E1635;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('/imgs/image 11.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+.ClosingBookingsForm {
+    height: 700px;
+}
+
+.ClosingBookingsForm .flex {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 80%;
+    font-size: 18px;
+}
+
+.ClosingBookingsForm .flex div ul  {
+    margin: 25px 0 25px 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ClosingBookingsForm .flex div ul li {
+    list-style-type: decimal;
+}
+
+.ClosingBookingsForm .flex .element form input {
+    padding: 15px;
+    width: 540px;
+    height: 95px;
+    background-color: #ffffff10;
+    border: none;
+    border-radius: 5px;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    color: #ffffff50;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.ClosingBookingsForm .flex .element form textarea {
+    background-color: #ffffff10;
+    border: none;
+    width: 540px;
+    height: 300px;
+    padding: 15px;
+    border-radius: 5px;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    color: #ffffff50;
+    resize: none;
+    margin-bottom: 15px;
+    outline: none;
+}
+.ClosingBookingsForm .flex .element form button {
+    width: 250px;
+    height: 65px;
+    background-color: #5EB85C;
+    color: #fff;
+    border-radius: 5px;
+}
+
+@-webkit-keyframes fade {
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
+}
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
+}
+ 
+a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Адаптивность */
+
+@media (max-width: 1620px)  {
+
+    .feedback_body_element {
+        margin: 0 auto;
+        width: 80%;
+        margin-top: 300px;
+        margin-bottom: -270px;
+    }
+
+    .feedback_body img {
+        display: none;
+    }
+
+}
+
+@media (max-width: 1386px) {
+    .form_flights .form_elements input {
+        margin-bottom: 15px;
+    }
+
+    .body_profile .main .card_user{
+        margin-right: 25px
+    }
+
+}
+
+@media (max-width: 1487px)  {
+
+    .form_flights form .form_elements .btn{
+        margin-top: 15px;
+    }
+}
+
+@media (max-width: 1250px)  {
+
+    .form_flights form .form_elements select {
+        margin-bottom: 15px;
+    }
+
+    .form_flights form .form_elements .btn{
+        margin-top: 15px;
+    }
+
+    .body_company .flex {
+        flex-direction: column;
+    }
+    .body_company .flex img {
+        margin-top: 25px;
+        width: 100%;
+    }
+    
+}
+
+@media (max-width: 956px) {
+    .body_profile .main .card_user {
+        height: 450px;
+    }
+
+    .staff .element_img img {
+        margin-top: 5px;
+    }
+}
+
+@media (max-width: 916px) {
+    .navbars {
+        flex-direction: column;
+    }
+    .navbars_element {
+        flex-direction: column;
+        margin-top: 25px;
+    }
+    .navbars .navbars_element .navbars_element_item {
+        margin-top: 15px;
+    }
+    
+    .dropbtn {
+        margin-top: 15px;
+    }
+
+    .hero .banner{
+        display: none;
+    }
+
+    .search {
+        margin-top: -300px;
+    }
+
+    .form_flights form {
+        align-items: center;
+    }
+
+    .form_flights form .form_elements input {
+        margin-bottom: 15px;
+    }
+    .form_flights form .form_elements select {
+        margin-bottom: 15px;
+    }
+
+    .form_flights form .form_elements .btn {
+        margin-top: -15px;
+    }
+    
+    .company .block_company .element img{
+        display: none;
+    }
+
+    .feedback_body img {
+        display: none;
+    }
+
+    .footer {
+        flex-direction: column;
+    }
+
+    .footer ul {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .tickets .tickets_element .tickets_element_item {
+        flex-direction: column;
+    }
+
+    .tickets .tickets_element .tickets_element_item div{
+        margin-bottom: 25px;
+    }
+
+    .body_profile {
+        height: 1500px;
+    }
+}
+
+@media (max-width: 830px) {
+    .card_stocks {
+        flex-direction: column;
+    }
+
+    .block_company img{
+        display: none;
+    }
+
+    .company .block_company .element {
+        width: 80%;
+    }
+
+    .company .block_company .element .block_company_text {
+        margin-left: 160px;
+    }
+
+    .card_stocks .elem {
+        margin-bottom: 25px;
+    }
+
+    .slider .item {
+        height: 350px;
+    }
+
+}
+
+@media (max-width: 680px) {
+
+    .feedback .feedback_body .feedback_body_element div form input {
+        padding: 15px;
+        width: 440px;
+        height: 95px;
+    }
+
+    .feedback .feedback_body .feedback_body_element div form textarea {
+        width: 440px;
+        height: 300px;
+        padding: 15px;
+    }
+    
+    .body_profile .main {
+        flex-direction: column;
+    }
+
+    .card_booking {
+        width: 450px;
+    }
+    
+    .ClosingBookingsForm .flex .element form input {
+        padding: 15px;
+        width: 440px;
+        height: 95px;
+    }
+
+    .ClosingBookingsForm .flex .element form textarea {
+        width: 440px;
+        height: 300px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 588px) {
+
+    .feedback .feedback_body .feedback_body_element div form input {
+        padding: 15px;
+        width: 340px;
+        height: 95px;
+    }
+
+    .feedback .feedback_body .feedback_body_element div form textarea {
+        width: 340px;
+        height: 300px;
+        padding: 15px;
+    }
+
+    .slider .item {
+        height: 450px;
+        margin-top: 150px;
+    }
+
+    .slider .prev{
+        position:absolute; 
+        left:0px; 
+        top:100px;
+        /* left:calc(100% - 150px);  */
+        background:#5EB85C; 
+        padding:30px; 
+        border-radius: 5px;
+    }
+    
+    .slider .next {
+        position:absolute; 
+        top:100px;
+        /* left: 0px; */
+        background:#5EB85C; 
+        padding:30px;
+        border-radius: 5px;
+        right: 270px;
+    }
+
+    .navbars {
+        font-size: 24px;
+    }
+
+    .dropbtn {
+        width: 250px;
+        height: 55px;
+        font-size: 24px;
+    }
+
+    .footer {
+        font-size: 24px;
+    }
+
+    ul {
+        flex-direction: column;
+        text-align: left;
+        
+    }
+
+    ul li {
+        margin-bottom: 5px;
+    }
+
+    .flights_card {
+        flex-direction: column;
+    }
+
+    .ClosingBookingsForm .flex .element form input {
+        padding: 15px;
+        width: 340px;
+        height: 95px;
+    }
+
+    .ClosingBookingsForm .flex .element form textarea {
+        width: 340px;
+        height: 300px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 524px) {
+
+    .card {
+        display: none;
+    }
+
+    .form_flights {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .company .block_company .element .block_company_text {
+        font-size: 20px;
+        text-align: justify;
+        margin: 0px auto;
+        width: 80%;
+    }
+
+    .body_profile .main .card_user {
+        width: 250px;
+    }
+
+    .card_booking {
+        width: 250px;
+    } 
+}
+
+
+@media (max-width: 448px) {
+
+    .feedback .feedback_body .feedback_body_element div form input {
+        padding: 15px;
+        width: 260px;
+        height: 95px;
+    }
+
+    .feedback .feedback_body .feedback_body_element div form textarea {
+        width: 260px;
+        height: 300px;
+        padding: 15px;
+    }
+
+    .ClosingBookingsForm .flex .element form input {
+        padding: 15px;
+        width: 260px;
+        height: 95px;
+    }
+
+    .ClosingBookingsForm .flex .element form textarea {
+        width: 260px;
+        height: 300px;
+        padding: 15px;
+    }
+
+    .search {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+}
+
+@media (max-widh:396px) {
+    .navbars div img{
+        width: 250px;
+        height: 300px;
+    }
+
+    .card_form form div button {
+        width: 50px;
+    }
+
+}
+
+  

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Бронирования</title>
+</head>
+
+<body class="body_booking" id="app">
+
+    <!-- Шапка -->
+    <div class="navbars">
+        <div><a href="index.html"><img src="/imgs/logo.png" alt=""></a></div>
+        <div class="navbars_element">
+            <div class="navbars_element_item">
+                <a href="index.html" class="">Главная</a>
+            </div>
+            <div class="navbars_element_item">
+                <a href="flight.html" class="">Поиск</a>
+            </div>
+            <div class="navbars_element_item">
+                <a href="booking.html" class="">Бронирования</a>
+            </div>
+            <template v-if="isLoggedIn">
+                <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn">{{ username }}</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="profile.html">Профиль</a>
+                        <a class="" href="#" @click.prevent="logout">Выход</a>
+                    </div>
+                </div>
+            </template>
+            <template v-else>
+                <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn">Личный кабинет</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="login.html">Вход</a>
+                        <a class="" href="register.html">Регистрация</a>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+    
+    <div class="booking" >
+
+        <div class="main">
+            
+            <div class="card_form">
+                <div class="title">
+                    <p class="">Бронирования </p>
+                </div>
+
+                <form class="" @submit.prevent="findBooking">
+                    <div class="">
+                        <input list="codeArrow"  type="text" class="" placeholder="Code" v-model="bookingCode">
+                        <datalist id="codeArrow">
+                            
+                        </datalist>
+                    </div>
+                    <div class="">
+                        <button type="submit" class="">
+                            <!-- Загрузка, чтобы показать, что идет обращание к АПИ, обращение к АПИ занимает время -->
+                            <!-- В то время как будут грузиться данные, надпись кнопки будет Loading..., потом будет обратно Find -->
+                            <span v-if="loadingContent">Loading...</span>
+                            <span v-else>Поиск</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- блок полученного бронирования -->
+            <div class="booging_card" v-if="booking">
+
+                <div class="booking_info">
+
+                    <div class="row1">
+                        <p class=""><b>Код бронирования: </b>{{ booking.code }}</p>
+                        <p class=""><b>Код перелёта: </b>{{ booking.flight_from.flight_code }}</p>
+                        <p class="" v-if="booking.flight_back"><b>Код перелёта (обратный): </b>{{ booking.flight_back.flight_code }}</p>
+                    </div>
+    
+                    <div class="row2">
+                        <div>
+                            <p class=""><b>Откуда: </b>{{ booking.flight_from.from_airport.iata }}</p>
+                            <p class=""><b>Время в пути: </b>{{ countFlightTime(booking.flight_from.from_airport.time, booking.flight_from.to_airport.time) }}</p>
+                            <p class="" v-if="booking.flight_back"><b>Откуда (обатеный): </b>{{ booking.flight_back.from_airport.iata }}</p>
+                            <p class="" v-if="booking.flight_back"><b>Время в пути (обратный): </b>{{ countFlightTime(booking.flight_back.from_airport.time, booking.flight_back.to_airport.time) }}</p>
+                        </div>
+        
+                        <div>
+                            <p class=""><b>Куда: </b>{{ booking.flight_from.to_airport.iata }}</p>
+                            <p class=""><b>Время прибытия: </b>{{ booking.flight_from.to_airport.time }}</p>
+                            <p class="" v-if="booking.flight_back"><b>Куда (обатеный): </b>{{ booking.flight_back.to_airport.iata }}</p>
+                            <p class="" v-if="booking.flight_back"><b>Время прибытия (обатеный): </b>{{ booking.flight_back.to_airport.time }}</p>
+                        </div>
+        
+                        <div>
+                            <p class=""><b>Стоимость: </b>{{ (booking.flight_from.cost + (booking.flight_back != null ? booking.flight_back.cost : 0)) * booking.passengers.length }} RUB</p>
+                            <p class=""><b>Дата и время вылета: </b>{{ booking.flight_from.from_airport.date }} {{ booking.flight_from.from_airport.time }} </p>
+                            <p class="" v-if="booking.flight_back"><b>Дата и время вылета (обратный): </b>{{ booking.flight_back.from_airport.date }} {{ booking.flight_back.from_airport.time }} </p>
+                        </div>
+
+                    </div>
+
+                    <div class="row3" v-for="(p, index) in booking.passengers">
+                        
+                        <div>
+                            <p class=""><b>Имя: </b>{{ p.first_name }}</p>
+                            <p class=""><b>Номер документа: </b>{{ p.document_number }}</p>
+                        </div>
+
+                        <div>
+                            <p class=""><b>Фамилия: </b>{{ p.last_name  }}</p>
+                            <button class="btn_seat" @click="goToChooseSeat(p, 'from')">
+                                <span v-if="p.place_from"><b>Место - туда: </b>{{ p.place_from }}</span>
+                                <span v-else>Нет места</span>
+                            </button>
+                        </div>
+
+                        <div>
+                            <p class=""><b>Дата рождения: </b>{{ p.birth_date }}</p>
+                            <button class="btn_seat" @click="goToChooseSeat(p, 'back')" >
+                                <span v-if="p.place_back"><b>Место - обратно: </b>{{ p.place_back }}</span>
+                                <span v-else>Нет места</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form_elements">
+                        <a href="closingBooking.html" class="btn">Отмента бронирования</a>
+                    </div>
+
+                </div>
+
+                <!-- схема самолета - блок выбора места -->
+                <div class="card_seat" v-if="seatSection">
+
+                    <!-- показ ошибок -->
+                    <div v-if="errorsArr.length > 0" class="my-5"> 
+                        <div v-for="error in errorsArr" class="text-red-500" role="alert">
+                        {{error}}
+                        </div>
+                    </div>
+
+                    <form class="" @submit.prevent="chooseSeat">
+                        <!-- Места в салоне -->
+                        <p class="">Пассажир: {{ obj.passenger }}, Место: {{ obj.seat }}, Тип: {{ obj.type }}</p>
+                        <div class="card_seat_body">
+                            <div class="card_seat_element">
+                                <div class="item">
+                                    <input class="" type="radio" id="radioBtn1" v-model="obj.seat" value="A1">
+                                    <label class="" for="radioBtn1">A1</label>
+                                </div>
+                                <div class="item">
+                                    <input class="" type="radio" id="radioBtn2" v-model="obj.seat" value="B2">
+                                    <label class="" for="radioBtn2">B2</label>
+                                </div>
+                            </div>
+                            <div class="card_seat_element">
+                                <div class="item">
+                                    <input class="" type="radio" id="radioBtn3" v-model="obj.seat" value="U8">
+                                    <label class="" for="radioBtn3">U8</label>
+                                </div>
+                                <div class="item">
+                                    <input class="" type="radio" id="radioBtn4" v-model="obj.seat" value="P7">
+                                    <label class="" for="radioBtn4">P7</label>
+                                </div>
+                            </div>                                
+                            <div class="card_seat_element">
+                                <div class="item">
+                                    <input class="" type="radio" id="radioBtn5" v-model="obj.seat" value="H6">
+                                    <label class="" for="radioBtn5">H6</label>
+                                </div>
+                                <div class="item">
+                                    <input class="" type="radio" id="radioBtn6" v-model="obj.seat" value="G5">
+                                    <label class="" for="radioBtn6">G5</label>
+                                </div>
+                            </div>
+                            <div class="card_seat_element">
+                                <div class="item">
+                                    <input class="" type="radio" id="radioBtn7" v-model="obj.seat" value="D4">
+                                    <label class="" for="radioBtn7">D4</label>
+                                </div>
+                                <div class="item">
+                                    <input class="" type="radio" id="radioBtn8" v-model="obj.seat" value="C3">
+                                    <label class="" for="radioBtn8">C3</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="">
+                            <button class="btn_form" type="submit">
+                                <!-- Загрузка, чтобы показать, что идет обращание к АПИ, обращение к АПИ занимает время -->
+                                <!-- В то время как будут грузиться данные, надпись кнопки будет Loading..., потом будет обратно Confirm -->
+                                <span v-if="loadingContent">Loading...</span>
+                                <span v-else>Подтвердить</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Подключение VUE.JS -->
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <!-- Подключение метода  (получения бронирования по коду, выбор места в салоне) -->   
+    <script src="js/booking.js"></script>
+
+    <!-- Функция - кнопка dropDown -->
+    <script src="js/option/dropdownButton.js"></script>
+
+    <!-- Помещении массива кодов бронирования из локального хранлищя в dataList -->
+    <script>
+        let data = JSON.parse(localStorage.getItem ("codeAll"));
+        let opt = '';
+        for (var i in data) {
+            opt += '<option value="' + data[i] + ' ">';
+        }
+        document.getElementById('codeArrow').innerHTML += opt;
+    </script>
+</body> 
+</html>

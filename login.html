@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Подключение CSS фреймворка -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Авторизация</title>
+</head>
+
+<body>
+    <div class="h-screen md:flex" id="app">
+        <div class="relative overflow-hidden md:flex w-1/2 bg-[#0E1635] justify-around items-center hidden">
+            <div>
+                <h1 class="text-white font-bold text-4xl font-sans">FLIGHT<span class="text-[#5EB85C]">SEARCH</span>
+                </h1>
+                <p class="text-white mt-1">С помощью нас сможете легко найти любые направления.<br>Путешествуй, отдыхай
+                    и копи бронирование, для получения персональной скидки</p>
+            </div>
+            <div class="absolute -bottom-32 -left-40 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8">
+            </div>
+            <div class="absolute -bottom-40 -left-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8">
+            </div>
+            <div class="absolute -top-40 -right-0 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
+            <div class="absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
+        </div>
+        <div class="flex md:w-1/2 justify-center py-10 items-center bg-white">
+            <form class="bg-white" @submit.prevent="login">
+                <h1 class="text-gray-800 font-bold text-2xl mb-5">Добро пожаловать</h1>
+
+                <div v-if="errorsArr.length > 0" class="mt-5 mb-5">
+                    <div v-for="error in errorsArr"
+                        class="pl-2 border-2 border-red-800 py-2 px-3 rounded-2xl text-red-600" role="alert">
+                        {{error}}
+                    </div>
+                </div>
+
+                <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+                    <img src="/imgs/telephone.png" alt="" class="h-5 w-5 text-gray-400">
+                    <input class="pl-2 outline-none border-none" type="text" name="phone" id="" placeholder="Телефон"
+                        v-model="phone" />
+                </div>
+                <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
+                        fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <input class="pl-2 outline-none border-none" type="password" name="password" id=""
+                        placeholder="Пароль" v-model="password" />
+                </div>
+                <button type="submit"
+                    class="block w-full bg-[#5EB85C] mt-4 py-2 rounded-2xl text-white font-semibold mb-2">
+                    <span v-if="loadingContent">Loading...</span>
+                    <span v-else>Войти</span>
+                </button>
+                <a href="register.html" class="no-underline text-black">Нет аккаунта ? Сделать его проще простого!</a>
+            </form>
+        </div>
+    </div>
+
+    <!-- Подключение VUE.JS -->
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <!-- Подключение метода (фрпма авторизации) -->
+    <script src="js/login.js"></script>
+</body>
+
+</html>

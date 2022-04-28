@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/style.css">
+    
+    <title>Главная</title>
+</head>
+
+<body class="index" id="app">
+
+    <!-- hero -->
+    <section class="hero">
+            
+            <!-- Шапка -->
+            <div class="navbars">
+                <div><img src="/imgs/logo.png" alt=""></div>
+                <div class="navbars_element">
+                    <div class="navbars_element_item">
+                        <a href="index.html" class="">Главная</a>
+                    </div>
+                    <div class="navbars_element_item">
+                        <a href="flight.html" class="">Поиск</a>
+                    </div>
+                    <div class="navbars_element_item">
+                        <a href="#company" class="">О компании</a>
+                    </div>
+                    <div class="navbars_element_item">
+                        <a href="#stocks" class="">Акции</a>
+                    </div>
+                    <div class="navbars_element_item">
+                        <a href="#directions" class="">Отзывы</a>
+                    </div>
+                    <div class="navbars_element_item">
+                        <a href="#contacts" class="">Обратная связь</a>
+                    </div>
+                    <template v-if="isLoggedIn">
+                        <div class="dropdown">
+                            <button onclick="myFunction()" class="dropbtn">{{ username }}</button>
+                            <div id="myDropdown" class="dropdown-content">
+                                <a href="profile.html">Профиль</a>
+                                <a href="booking.html" class="">Бронирования</a>
+                                <a class="" href="#" @click.prevent="logout">Выход</a>
+                            </div>
+                        </div>
+                    </template>
+                    <template v-else>
+                        <div class="dropdown">
+                            <button onclick="myFunction()" class="dropbtn">Личный кабинет</button>
+                            <div id="myDropdown" class="dropdown-content">
+                                <a href="login.html">Вход</a>
+                                <a class="" href="register.html">Регистрация</a>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <!-- баннер -->
+            <div class="banner">
+                <img src="/imgs/Group 1.png" alt="" class="img_banner_1">
+                <img src="/imgs/Group 2.png" alt="" class="img_banner_2">
+                <h1 class="">Один полёт,<br>два в уме</h1>
+                <h3 class="">Получайте персональную скидку за накопленные<br>бронирования</h3>
+            </div>
+
+    </section>
+        
+    <!-- Блок поиска -->
+    <section class="search" id="search">
+
+            <div class="title_search">
+                <h1>Поиск рейсов</h1>
+                <div class="top_line"></div>
+            </div>
+            
+            <div class="form_flights">
+                <form action="" class="" @submit.prevent="searchFlights" onchange="getDateFromPars(), getDateBackPars()">
+                    <div class="form_elements">
+                        <select name="" id="fromlist" onchange="document.getElementById('from').value = this.value">
+                            <option value="" >Выберите точку вылета</option>
+                        </select>
+                        <input type="hidden" id="from" placeholder="Откуда" class="" v-model="from" value=""/>
+                    </div>
+                    <div class="form_elements">
+                        <select name="" id="tolist" onchange="document.getElementById('to').value = this.value">
+                            <option value="" >Выберите точку прилета</option>
+                        </select>
+                        <input type="hidden" placeholder="Куда" class="" id="to" />
+                    </div>
+                    <div class="form_elements">
+                        <input type="date" placeholder="Дата туда"  id="date1" onclick=""/ style="padding: 24px;">
+                    </div>
+                    <div class="form_elements">
+                        <input type="date" placeholder="Дата обратно" class=""  id="date2" / style="padding: 24px;">
+                    </div>
+                    <div class="form_elements">
+                        <input type="number" placeholder="Кол-во пассажиров" class="" id="passengers">
+                    </div>
+                    <div class="form_elements">
+                        <a href="flight.html" v-else onclick="storage()" class="btn"> Поиск </a>
+                    </div>
+                </form>
+            </div>
+
+    </section>
+
+    <!-- блок о компании -->
+    <section class="company" id="company">
+
+        <div class="block_company">
+
+            <div class="">
+                <img src="/imgs/Group 11.png" alt="" class="">
+            </div>
+
+            <div class="element">
+                <div class="block_company_text" id="">
+                    <h2 class=""> «Феникс» - маленькая Красноярская<br>компания</h2>
+                    <p class="">
+                        Основана 24 марта 2005 года. <br> Постепенно авиакомпания "Феникс" выходит на мировой уровень.
+                    </p>
+                    <p class="">
+                        География полетов – в настоящее время маршрутами красноярской авиакомпании<br>охвачена
+                        территория
+                        России от Алтая до Камчатки. <br>Воздушные суда с логотипом «Феникс» бывают и на Северном
+                        полюсе,<br>выполняя ответственную задачу по обеспечению работы <br>Сезонной дрейфующей станции
+                        Русского географического общества.
+                    </p>
+                    <div class="element">
+                        <a href="company.html" class="">Просмотреть</a>
+                    </div>
+                </div>
+    
+                <div class="">
+                    <img src="/imgs/company.png" alt="" class="">
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- блок акций -->
+    <section class="stocks" id="stocks">
+
+        <div class="card_stocks">
+            <div class="elem">
+                <div class="">
+                    <img src="/imgs/icon-booking.png" alt="" class="">
+                    <h3 class="">Больше бронирований <br>меньше цена </h3>
+                </div>
+    
+                <div class="text-center ">
+                    <p>С каждым бронированием<br>накапливается персональная скидка</p>
+                </div>
+            </div>
+            <div class="elem">
+                <div class="">
+                    <img src="/imgs/icon-couple.png" alt="" class="">
+                    <h3 class="">Брачное<br>путишествие</h3>
+    
+                </div>
+    
+                <div class="text-center ">
+                    <p>Всем молодоженам скидка при<br>первом полёте 15%</p>
+                </div>
+    
+            </div>
+            <div class="">
+                <div class="text-center py-4 px-7">
+                    <img src="/imgs/icon-tour.png" alt="" class="">
+                    <h3 class="">Скидка на<br>популярные<br>направления</h3>
+    
+                </div>
+    
+                <div class="">
+                    <p>Скидка на популярные<br> направления 10%</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- блок коментариев -->
+    <section class="card" id="directions">
+        <div class="slider" id="divComm">
+            <div class="title">
+                <h2 class="">Ваши отзывы</h2>
+                <a class="prev" onclick="minusSlide()">&#10094;</a>
+                <a class="next" onclick="plusSlide()">&#10095;</a>
+            </div>
+            <div class="item" id="slide showing">
+                <p>Proin sed libero enim sed faucibus turpis. At imperdiet dui accumsan sit amet nulla facilisi morbi tempus. Ut sem nulla pharetra diam sit amet nisl. Enim nunc faucibus a pellentesque sit amet. Sed turpis tincidunt id aliquet risus feugiat in ante metus.</p>
+                <p><b>User1: </b> Gigbit</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Блок обратной связи -->
+    <section class="feedback" id="contacts">
+
+        <div class="feedback_body">
+
+            <div class="feedback_body_element">
+
+                <div class=""> <img src="/imgs/Group 11.png" alt="" class=""> </div>
+
+                <div class="">
+                    <h2 class="">Оставьте заявку</h2>
+
+                    <div v-if="errorsArr.length > 0" class="errorx">
+                        <div v-for=" error in errorsArr" class="" role="alert">
+                            {{error}}
+                        </div>
+                    </div>
+
+                    <form action="" @submit.prevent="formFeedBack">
+                        <div>
+                            <input type="text" name="" id="" placeholder="Ваше имя" class="" v-model="nameUser">
+                        </div>
+                        <div>
+                            <input type="text" name="" id="" placeholder="Ваш email, WhatsApp, номер телефона" class="" v-model="connection">
+                        </div>
+                        <div>
+                            <textarea name="" id="" cols="30" rows="10" placeholder="Сообщение для Нас" class="" v-model="message"></textarea>
+                        </div>
+                        <div class="form_elements">
+                            <button type="submit" class="">
+                                <span v-if="loadingContent" class="text-white">Loading...</span>
+                                <span v-else> Отправить </span>
+                            </button>
+                        </div>
+                    </form>
+                
+                </div>
+
+            </div>
+            
+            <div class="">
+                <img src="/imgs/airplane.png" alt="" class="img_airplane" width="">
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Подвал -->
+    <footer class="">
+        <div class="footer">
+            <div><img src="/imgs/logo.png" alt=""></div>
+            <nav>
+                <ul class="">
+                    <li class=""><a href="#" class="">Поиск</a></li>
+                    <li class=""><a href="#" class="">О нас</a></li>
+                    <li class=""><a href="#" class="">Акци</a></li>
+                    <li class=""><a href="#" class="">Горячии направляения</a></li>
+                    <li class=""><a href="#" class="">Связаться с нами</a>
+                    </li>
+                </ul>
+            </nav>
+            <div>
+                <ul class="">
+                    <li class=""><a href="tel:+7(999)3065836" class="">+7 (999) 306 58 36</a></li>
+                    <li class=""><a href="mailto:flightBooking@mail.ru" class="">flightBooking@mail.ru</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Сладйер -->
+    <script src="js/option/slider.js"></script>
+
+    <!-- Получение аэропортов и отзывов через GET запрос -->
+    <script>
+        fetch('http://127.0.0.1:8000/api/allAirport')
+            .then(response => response.json())
+            .then(data => {
+                let arr = data.data.city;
+                let arrIata = data.data.iata;
+                let airports = arr.concat(arrIata);
+                let selectFrom = document.getElementById('fromlist');
+                let selectTo = document.getElementById('tolist');
+
+                // console.log(airports)
+                // console.log(arrIata)
+                // let opt1 = '';
+                // let opt2 = '';
+                for (var i in arr) {
+                    let opt = document.createElement('option');
+                    opt.value = arrIata[i];
+                    opt.innerHTML = arr[i];
+                    selectFrom.appendChild(opt);
+                }
+
+                for (var i in arr) {
+                    let opt = document.createElement('option');
+                    opt.value = arrIata[i];
+                    opt.innerHTML = arr[i];
+                    selectTo.appendChild(opt);
+                }
+            })
+
+            fetch('http://127.0.0.1:8000/api/comments')
+            .then(res => res.json())
+            .then(res => { 
+                let comments = res.data.comments
+                console.log(comments)
+                let div = '';
+                for (var i in comments) {
+                    let elem = document.createElement("div")
+                    elem.className = 'item'
+                    elem.style.display = 'none';
+                    elem.innerHTML = '<p>'+ comments[i].comment +'</p><p><b>Пользователь: </b>'+ comments[i].nameUser +'</p>';
+                    document.getElementById("divComm").appendChild(elem);
+                }
+            })
+    </script>
+
+    <!-- Функция добавления данных в локальное хранилище -->
+    <script src="js/option/storage.js"></script>
+
+    <!-- Подключение VUE.JS -->
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <!-- Подключение метода  (отправлка формы обратной связи) -->
+    <script src="js/indexTools.js"></script>
+    
+    <!-- Функция - кнопка dropDown -->
+    <script src="js/option/dropdownButton.js"></script>
+</body>
+
+</html>

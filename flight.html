@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Рейсы</title>
+</head>
+
+<body class="bodyFlight">
+
+    <section class="flights" id="app">
+
+        <!-- Шапка -->
+        <div class="navbars">
+            <div><a href="index.html"><img src="/imgs/logo.png" alt=""></a></div>
+            <div class="navbars_element">
+                <div class="navbars_element_item">
+                    <a href="index.html" class="">Главная</a>
+                </div>
+                <div class="navbars_element_item">
+                    <a href="flight.html" class="">Поиск</a>
+                </div>
+                <div class="navbars_element_item">
+                    <a href="booking.html" class="">Бронирования</a>
+                </div>
+                <template v-if="isLoggedIn">
+                    <div class="dropdown">
+                        <button onclick="myFunction()" class="dropbtn">{{ username }}</button>
+                        <div id="myDropdown" class="dropdown-content">
+                            <a href="profile.html">Профиль</a>
+                            <a class="" href="#" @click.prevent="logout">Выход</a>
+                        </div>
+                    </div>
+                </template>
+                <template v-else>
+                    <div class="dropdown">
+                        <button onclick="myFunction()" class="dropbtn">Личный кабинет</button>
+                        <div id="myDropdown" class="dropdown-content">
+                            <a href="login.html">Вход</a>
+                            <a class="" href="register.html">Регистрация</a>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+
+          <!-- Открывает блок с поиском и результатом рейсов -->
+        <div v-if="page.searchWindowOpened">
+    
+                    <div class="title_search">
+                        <h1>Поиск рейсов</h1>
+                        <div class="top_line"></div>
+                    </div>
+
+                    <!-- Вывод ошибок -->
+                    <div v-if="errorsArr.length > 0" class="errorx">
+                        <div v-for=" error in errorsArr" class="" role="alert">
+                            {{error}}
+                        </div>
+                    </div>
+                    
+                    <div class="form_flights">
+                        <form action="" class="" @submit.prevent="searchFlights">
+                            <div class="form_elements">
+                                <input type="text" placeholder="Откуда" class="" v-model="from" id="from"/>
+                            </div>
+                            <div class="form_elements">
+                                <input type="text" placeholder="Куда" class="" v-model="to" id="to" />
+                            </div>
+                            <div class="form_elements">
+                                <input type="text" placeholder="Дата туда" v-model="date1" id="date1" />
+                            </div>
+                            <div class="form_elements">
+                                <input type="text" placeholder="Дата обратно" class="" v-model="date2" id="date2" />
+                            </div>
+                            <div class="form_elements">
+                                <input type="text" placeholder="Кол-во пассажиров" class="" v-model="passengers" id="passengers">
+                            </div>
+                            <div class="form_elements">
+                                <button type="submit" class="">
+                                    <span v-if="loadingContent" class="text-white">Loading...</span>
+                                    <span v-else> Поиск </span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+            <!-- Открывается полсе использования поиска -->
+            <div class="flights_card" v-if="flights">
+
+                <div class="flights_card_option">
+                    
+                    <!-- Карточка рейса -->
+                    <div class="options_flights_title">
+                        <h3>Направление</h3>
+                        <h3>{{ from }} - {{ to }}</h3>
+                        <h3 v-if="flights.flights_back.length > 0">{{ to }} - {{ from }}</h3>
+                    </div>
+
+                    <!-- Фильтр -->
+                    <div class="options_flights_filter">
+                        <h6 class="">Фильтр по времени отправления</h6>
+                        <form class="" @submit.prevent="filterTimeBetween">
+                            <div class="options_flights_filter_element">
+                                <div class="">
+                                    <input type="time" class="" v-model="timeBetweenStart" required>
+                                </div>
+                                <div class="">
+                                    <input type="time" class="" v-model="timeBetweenEnd" required>
+                                </div>
+                            </div>
+                            <div class="">
+                                <button type="submit" class="">Отфильтровать</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Сортировка -->
+                    <div class="options_flights_sorting">
+                        <h6 class="">Сортировка:</h6>
+                        <form class="" @submit.prevent="sortByProperty">
+                            <div class="options_flights_filter_element">
+                                <div class="">
+                                    <input class="" type="radio" id="radioBtn1" v-model="sortPoperty" value="FLIGHTTIME" style="background-color: #ffffff10;">
+                                    <label class="" for="radioBtn1">
+                                        По времени полёта
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="options_flights_filter_element">
+                                <div class="">
+                                    <input class="" type="radio" id="radioBtn2" v-model="sortPoperty" value="COST">
+                                    <label class="" for="radioBtn2">
+                                        По цене
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="options_flights_filter_element">
+                                <button type="submit" class="">Сортировка</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- После выбранного рейса перенапровляет к бронированию -->
+                    <div class="options_flights_goToBooking">
+                        <button class="" @click="goToBooking">Перейти к бронированию</button>
+                    </div>
+
+                </div>
+                
+                <!-- Вывод отфильтрованных рейсов -->
+                <div class="flights_card_tickets">
+                    <div class="">
+                        <div v-if="filtering">
+                            <div v-for="f in flights.flights_to" class="filtering">
+                                <div  class="filtering_element">
+                                    <div class="filtering_element_item">
+                                        <div>
+                                            <b class="">Код</b><br>
+                                            <label class="">{{ f.flight_code }}</label> 
+                                        </div>
+                                        <div>
+                                            <b class="">Дата и время вылета</b><br>
+                                            <label class="">{{ f.from_airport.date }} {{ f.from_airport.time }}</label> 
+                                        </div>
+                                        <div>
+                                            <b class="">Время прибытия</b><br>
+                                            <label class="">{{ f.to_airport.time }}</label>  
+                                        </div>
+                                        <div>
+                                            <b class="">Время полёта</b><br> 
+                                            <label class="">{{ countFlightTime(f.from_airport.time, f.to_airport.time) }}</label> 
+                                        </div>
+                                        <div>
+                                            <b class="">Цена</b><br>
+                                            <label class="">{{ passengers * f.cost }} RUB</label>
+                                        </div>
+                                        <div class="filtering_input">
+                                            <input class="" style="width: 30px; height: 30px;" type="radio" :value="f" v-model="checkedFlights.checkedToFlight">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="" v-if="flights.flights_back.length > 0">
+                                <!-- Проверка на обратный рейс -->
+                                <!-- получение обратного рейса -->
+                                <div v-for="f in flights.flights_back" class="filtering">
+                                    <div  class="filtering_element">
+                                        <div class="filtering_element_item">
+                                            <div>
+                                                <b class="">Код</b><br>
+                                                <label class="">{{ f.flight_code }}</label> 
+                                            </div>
+                                            <div>
+                                                <b class="">Дата и время вылета</b><br>
+                                                <label class="">{{ f.from_airport.date }} {{ f.from_airport.time }}</label> 
+                                            </div>
+                                            <div>
+                                                <b class="">Время прибытия</b><br>
+                                                <label class="">{{ f.to_airport.time }}</label>  
+                                            </div>
+                                            <div>
+                                                <b class="">Время полёта</b><br> 
+                                                <label class="">{{ countFlightTime(f.from_airport.time, f.to_airport.time) }}</label> 
+                                            </div>
+                                            <div>
+                                                <b class="">Цена</b><br>
+                                                <label class="">{{ passengers * f.cost }} RUB</label>
+                                            </div>
+                                            <div class="filtering_input">
+                                                <input class="" style="width: 30px; height: 30px;" type="radio" :value="f" v-model="checkedFlights.checkedBackFlight">
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <!-- else - все найденные рейсы, если фильтр не используется -->
+                        <div v-else>
+                            <div v-for="f in flights.flights_to" class="tickets">
+                                <div  class="tickets_element">
+                                    <div class="tickets_element_item">
+                                        <div>
+                                            <b class="">Код</b><br>
+                                            <label class="">{{ f.flight_code }}</label> 
+                                        </div>
+                                        <div>
+                                            <b class="">Дата и время вылета</b><br>
+                                            <label class="">{{ f.from_airport.date }} {{ f.from_airport.time }}</label> 
+                                        </div>
+                                        <div>
+                                            <b class="">Время прибытия</b><br>
+                                            <label class="">{{ f.to_airport.time }}</label>  
+                                        </div>
+                                        <div>
+                                            <b class="">Время полёта</b><br> 
+                                            <label class="">{{ countFlightTime(f.from_airport.time, f.to_airport.time) }}</label> 
+                                        </div>
+                                        <div>
+                                            <b class="">Цена</b><br>
+                                            <label class="">{{ passengers * f.cost }} RUB</label>
+                                        </div>
+                                        <div class="tickets_input">
+                                            <input class="" style="width: 30px; height: 30px;" type="radio" :value="f" v-model="checkedFlights.checkedToFlight">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="" v-if="flights.flights_back.length > 0">
+                                <!-- Проверка на обратный рейс -->
+                                <!-- получение обратного рейса -->
+                                <div v-for="f in flights.flights_back" class="tickets">
+                                    <div  class="tickets_element">
+                                        <div class="tickets_element_item">
+                                            <div>
+                                                <b class="">Код</b><br>
+                                                <label class="">{{ f.flight_code }}</label> 
+                                            </div>
+                                            <div>
+                                                <b class="">Дата и время вылета</b><br>
+                                                <label class="">{{ f.from_airport.date }} {{ f.from_airport.time }}</label> 
+                                            </div>
+                                            <div>
+                                                <b class="">Время прибытия</b><br>
+                                                <label class="">{{ f.to_airport.time }}</label>  
+                                            </div>
+                                            <div>
+                                                <b class="">Время полёта</b><br> 
+                                                <label class="">{{ countFlightTime(f.from_airport.time, f.to_airport.time) }}</label> 
+                                            </div>
+                                            <div>
+                                                <b class="">Цена</b><br>
+                                                <label class="">{{ passengers * f.cost }} RUB</label>
+                                            </div>
+                                            <div class="tickets_input">
+                                                <input class="" style="width: 30px; height: 30px;" type="radio" :value="f" v-model="checkedFlights.checkedBackFlight">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Окно бронирования -->
+        <div v-if="page.bookingWindowOpened">
+
+            <div class="booking_title">
+                <h2 class="">Бронирование</h2>
+            </div>
+
+            <div v-if="isLoggedIn">
+                <!-- блок бронирования -->
+                <div class="booking_card">
+                    <!-- блок бронируемых рейсов -->
+                    <div class="">
+                        <div class="booking_card_element">
+                            <p class=""><b>Код перелёта: </b>{{
+                                checkedFlights.checkedToFlight.flight_code
+                                }}</p>
+                            <p class=""><b>Откуда: </b>{{
+                                checkedFlights.checkedToFlight.from_airport.iata
+                                }}, {{ checkedFlights.checkedToFlight.from_airport.city }}, {{
+                                checkedFlights.checkedToFlight.from_airport.date }}
+                                {{checkedFlights.checkedToFlight.from_airport.time}}</p>
+                            <p class=""><b>Куда: </b>{{ checkedFlights.checkedToFlight.to_airport.iata
+                                }},
+                                {{ checkedFlights.checkedToFlight.to_airport.city }}, {{
+                                checkedFlights.checkedToFlight.to_airport.date }}
+                                {{checkedFlights.checkedToFlight.to_airport.time}}</p>
+                        </div>
+                        <div class="booking_card_element" v-if="checkedFlights.checkedBackFlight">
+                            <p class=""><b>Код перелёта: </b>{{
+                                checkedFlights.checkedBackFlight.flight_code }}</p>
+                            <p class=""><b>Откуда: </b>{{
+                                checkedFlights.checkedBackFlight.from_airport.iata }}, {{
+                                checkedFlights.checkedBackFlight.from_airport.city }}, {{
+                                checkedFlights.checkedBackFlight.from_airport.date }}
+                                {{checkedFlights.checkedBackFlight.from_airport.time}}</p>
+                            <p class=""><b>Куда: </b>{{
+                                checkedFlights.checkedBackFlight.to_airport.iata
+                                }}, {{ checkedFlights.checkedBackFlight.to_airport.city }}, {{
+                                checkedFlights.checkedBackFlight.to_airport.date }}
+                                {{checkedFlights.checkedBackFlight.to_airport.time}}</p>
+                        </div>
+                    </div>
+
+                    <!-- блок пассажиров -->
+                    <div class="passengers_booking">
+                        <h5 class="">Пассажир</h5>
+                        <!-- блок одного пассажира -->
+                        <div class="passengers_booking_element">
+
+                            <!-- Вывод ошибок -->
+                            <div v-if="errorsArr.length > 0" class="errorx">
+                                <div v-for=" error in errorsArr" class="" role="alert">
+                                    {{error}}
+                                </div>
+                            </div>
+
+                            <form class="" @submit.prevent="addPassenger">
+                                <div class="">
+                                    <label class="">Имя</label>
+                                    <input type="text" class=""
+                                        v-model="passenger.first_name" required>
+                                </div>
+                                <div class="">
+                                    <label class="">Фамилия</label>
+                                    <input type="text" class="" v-model="passenger.last_name" required>
+                                </div>
+                                <div class="">
+                                    <label class="">Дата рождения</label>
+                                    <p>(Введите дату в формате Год-Месяц-День)</p>
+                                    <input type="text" class="" v-model="passenger.birth_date" required>
+                                </div>
+                                <div class="">
+                                    <label class="">Номер документа</label>
+                                    <input type="text" class="" v-model="passenger.document_number" required>
+                                </div>
+                                <div class="">
+                                    <button class="">Добавить</button>
+                                </div>
+                            </form>
+
+                            <div class="flex-w">
+                                <div class="passengers_booking_element_item" v-for="(p, index) in passengersInBooking"> 
+                                    <p class=""><b>Имя: </b>{{ p.first_name }}</p>
+                                    <p class=""><b>Фамилия: </b>{{ p.last_name }}</p>
+                                    <p class=""><b>Дата рождения: </b>{{ p.birth_date }}</p>
+                                    <p class=""><b>Номер документа: </b>{{ p.document_number }}</p>
+                                    <button class="" @click="deletePassenger(index)">Удалить</button>
+                                </div>
+                            </div>
+
+
+                            <!-- блок добавления пассажира -->
+
+                        </div>
+
+                        <!-- кнопка бронирования -->
+                        <button class="btn_blue"
+                            @click="book">
+                            <!-- Загрузка, чтобы показать, что идет обращание к АПИ, обращение к АПИ занимает время -->
+                            <!-- В то время как будут грузиться данные, надпись кнопки будет Loading..., потом будет обратно Search -->
+                            <span v-if="loadingContent">Loading...</span>
+                            <span v-else>Подтвердить</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Если пользователь не авторизированный, то выдаем это сообщение -->
+            <div v-else="isLoggedIn" class="booging_false">
+                Пройдите авторизацию для продолжения бронирования - <a href="login.html"
+                    class="underline text-blue">Авторизация</a>
+            </div>
+        </div>
+    </section>
+    
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <!-- Подключение метода  (форма поиска рейса, окно найденных рейсов, окно бронирования, форма добавления пассажиров, функция фильтрации и сортировки) -->
+    <script src="js/searchFlights.js"></script>
+
+    <!-- Функция - кнопка dropDown -->
+    <script src="js/option/dropdownButton.js"></script>
+</body>
+
+</html>
