@@ -38,7 +38,7 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <strong>Код рейса:</strong>
-                                    <input type="text" name="flight_code" value ="{{ $showFlight['flight_code'] }}" class="form-control" placeholder="Код рейса"> {{-- Вствка данных полученных по ID --}}
+                                    <input type="text" name="flight_code" value ="{{ $showFlight['flight_code'] }}" class="form-control"> {{-- Вствка данных полученных по ID --}}
                                 </div>
                                 <div onchange="checkSelect()">
                                     <div class="form-group">
@@ -52,7 +52,7 @@
                                             @endif
                                             @endforeach
                                         </select>
-                                        <input type="text" name="from_id" id="fromId" value="{{$showFlight['from_id']}}" class="form-control" placeholder="Город отправления">
+                                        <input type="hidden" name="from_id" id="fromId" value="{{$showFlight['from_id']}}" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <strong>Город прибытия:</strong>
@@ -65,20 +65,20 @@
                                             @endif
                                             @endforeach
                                         </select>
-                                        <input type="text" name="to_id" id="toId" value="{{$showFlight['to_id']}}" class="form-control" placeholder="Город прибытия"> {{-- Вствка данных полученных по ID --}}
+                                        <input type="hidden" name="to_id" id="toId" value="{{$showFlight['to_id']}}" class="form-control"> {{-- Вствка данных полученных по ID --}}
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <strong>Время отправления:</strong>
-                                    <input type="text" name="time_from" value ="{{ $showFlight['time_from'] }}" class="form-control" placeholder="Время отправления:"> {{-- Вствка данных полученных по ID --}}
+                                    <input type="text" name="time_from" value ="{{ $showFlight['time_from'] }}" class="form-control"> {{-- Вствка данных полученных по ID --}}
                                 </div>
                                 <div class="form-group">
                                     <strong>Время прибытия:</strong>
-                                    <input type="text" name="time_to" value ="{{ $showFlight['time_to'] }}" class="form-control" placeholder="Время прибытия:"> {{-- Вствка данных полученных по ID --}}
+                                    <input type="text" name="time_to" value ="{{ $showFlight['time_to'] }}" class="form-control"> {{-- Вствка данных полученных по ID --}}
                                 </div>
                                 <div class="form-group">
                                     <strong>Цена:</strong>
-                                    <input type="text" name="cost" value ="{{ $showFlight['cost'] }}" class="form-control" placeholder="Цена"> {{-- Вствка данных полученных по ID --}}
+                                    <input type="text" name="cost" value ="{{ $showFlight['cost'] }}" class="form-control"> {{-- Вствка данных полученных по ID --}}
                                 </div>
                             </div>
                             <div class="card-footer">

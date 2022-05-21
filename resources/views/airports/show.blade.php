@@ -22,15 +22,15 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <strong>Город:</strong>
-                                <input type="text" name="city" value ="{{ $airportShow['city'] }}" class="form-control" placeholder="Имя"> {{-- Вствка данных полученных по ID --}}
+                                <input type="text" name="city" value ="{{ $airportShow['city'] }}" class="form-control"> {{-- Вствка данных полученных по ID --}}
                             </div>
                             <div class="form-group">
                                 <strong>Название аэропорта:</strong>
-                                <input type="text" name="name" value ="{{ $airportShow['name']}}" class="form-control" placeholder="Фамилия"> {{-- Вствка данных полученных по ID --}}
+                                <input type="text" name="name" value ="{{ $airportShow['name']}}" class="form-control"> {{-- Вствка данных полученных по ID --}}
                             </div>
                             <div class="form-group">
                                 <strong>Код аэропорта:</strong>
-                                <input type="text" name="iata" value ="{{ $airportShow['iata'] }}" class="form-control" placeholder="Дата рождения"> {{-- Вствка данных полученных по ID --}}
+                                <input type="text" name="iata" value ="{{ $airportShow['iata'] }}" class="form-control"> {{-- Вствка данных полученных по ID --}}
                             </div>
                         </div>
                     </div>

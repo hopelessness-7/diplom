@@ -36,7 +36,7 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <strong>Код рейса:</strong>
-                                    <input type="text" name="flight_code" class="form-control" placeholder="Город">
+                                    <input type="text" name="flight_code" class="form-control">
                                 </div>
                                 <div onchange="checkSelect()">
                                     <div class="form-group">
@@ -47,7 +47,7 @@
                                                 <option value="{{ $air->id}}"> {{ $air->city}} </option>
                                             @endforeach
                                         </select>
-                                        <input type="hidden" name="from_id" id="fromId" value="" class="form-control" placeholder="Город отправления">
+                                        <input type="hidden" name="from_id" id="fromId" value="" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <strong>Город прибытия:</strong>
@@ -57,20 +57,20 @@
                                                 <option value="{{ $airport->id}}"> {{ $airport->city}} </option>
                                             @endforeach
                                         </select>
-                                        <input type="text" name="to_id" id="toId" value="" class="form-control" placeholder="Город прибытия">
+                                        <input type="hidden" name="to_id" id="toId" value="" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <strong>Время отправления:</strong>
-                                    <input type="text" name="time_from" class="form-control" placeholder="Время отправления">
+                                    <input type="text" name="time_from" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <strong>Время прибытия:</strong>
-                                    <input type="text" name="time_to" class="form-control" placeholder="Время прибытия">
+                                    <input type="text" name="time_to" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <strong>Цена:</strong>
-                                    <input type="text" name="cost" class="form-control" placeholder="Цена">
+                                    <input type="text" name="cost" class="form-control">
                                 </div>
                             </div>
                             <div class="card-footer">

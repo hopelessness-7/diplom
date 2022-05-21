@@ -36,15 +36,15 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <strong>Город:</strong>
-                                    <input type="text" name="city" class="form-control" placeholder="Город">
+                                    <input type="text" name="city" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <strong>Названия аэропорта:</strong>
-                                    <input type="text" name="name" class="form-control" placeholder="Названия аэропорта">
+                                    <input type="text" name="name" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <strong>Код аэропорта:</strong>
-                                    <input type="text" name="iata" class="form-control" placeholder="Код аэропорта">
+                                    <input type="text" name="iata" class="form-control">
                                 </div>
                             </div>
                             <div class="card-footer">

@@ -32,7 +32,6 @@
                                 <th>Фамилия</th>
                                 <th>Дата рождения</th>
                                 <th>Номер документа</th>
-                                <th>Дата регистрации</th>
                                 <th>Опции</th>
                             </tr>
                         </thead> {{-- Конец шапки таблицы  --}}
@@ -57,16 +56,6 @@
                                                     <a class="btn btn-info btn-sm" href="{{ route('passengers.show',$passenger->id) }}">
                                                             просмотреть
                                                     </a>
-                                                </li>
-                                                <li>
-                                                    {{-- Удаление данных по ID --}}
-                                                    <form action="{{ route('passengers.destroy',$passenger->id) }}" method="POST" id="form" style="display: inline-block">
-                                                        @csrf    <!-- Проверка запросов. -->
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm delete-btn my-2">
-                                                            Удалить
-                                                        </button>
-                                                    </form>
                                                 </li>
                                             </ul>
                                         </div>
