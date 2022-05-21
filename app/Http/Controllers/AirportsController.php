@@ -49,7 +49,7 @@ class AirportsController extends Controller
         $request->validate([
             'city' => 'required',
             'name' => 'required',
-            'iata' => 'required',
+            'iata' => 'required|string',
         ]);
 
         $airport = [
