@@ -124,7 +124,7 @@ class BookingsController extends Controller
             return response()->json([
                 'not found' => [
                     'code' => 404,
-                    'message' => "Resource with code=$code not found"
+                    'message' => "Бронирование с кодом=$code не найдено"
                 ]
             ], 404);
         } else {
@@ -156,7 +156,7 @@ class BookingsController extends Controller
             return response()->json([
                 'not found' => [
                     'code' => 404,
-                    'message' => "Resource with code=$code not found"
+                    'message' => "Бронирование с кодом=$code не найдено"
                 ]
             ], 404);
         }
@@ -222,7 +222,7 @@ class BookingsController extends Controller
                 return response()->json([
                     'error' => [
                         'code' => 422,
-                        'message' => "Booking $code doesn't have flight_back"
+                        'message' => "Бронирование $code не имеет обратного рейса"
                     ]
                 ], 422);
             }
@@ -236,7 +236,7 @@ class BookingsController extends Controller
             return response()->json([
                 'error' => [
                     'code' => 403,
-                    'message' => "Passenger does not apply to booking $code"
+                    'message' => "Пассажир не входит в это бронирование $code"
                 ]
             ], 403);
         }
@@ -261,7 +261,7 @@ class BookingsController extends Controller
                         return response()->json([
                             'error' => [
                                 'code' => 422,
-                                'message' => "Seat is occupied"
+                                'message' => "Место занято"
                             ]
                         ], 422);
                     }
@@ -284,7 +284,7 @@ class BookingsController extends Controller
                         return response()->json([
                             'error' => [
                                 'code' => 422,
-                                'message' => "Seat is occupied"
+                                'message' => "Место занято"
                             ]
                         ], 422);
                     }

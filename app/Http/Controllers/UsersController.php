@@ -44,7 +44,7 @@ class UsersController extends Controller
                 'error' => [
                     'code' => 401,
                     'message' => 'Unauthorized',
-                    'errors' => 'Invalid credentials'
+                    'errors' => 'Ошибка входа, проверте правильно написания телефона и/или пароля'
                 ]
             ], 401);
         }
