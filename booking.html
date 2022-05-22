@@ -53,6 +53,13 @@
                     <p class="">Бронирования </p>
                 </div>
 
+                <!-- Вывод ошибок -->
+                <div v-if="errorsArr.length > 0" class="errorx">
+                    <div v-for=" error in errorsArr" class="" role="alert">
+                        {{error}}
+                    </div>
+                </div>
+
                 <form class="" @submit.prevent="findBooking">
                     <div class="">
                         <input list="codeArrow"  type="text" class="" placeholder="Code" v-model="bookingCode">

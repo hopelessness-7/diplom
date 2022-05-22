@@ -5,11 +5,11 @@ const App = {
             loadingContent: false,
             username: '',
             nameUser: '',
-            user: this.username = localStorage.getItem('username'),
+            user: localStorage.getItem('first_name') + ' ' + localStorage.getItem('last_name'),
             connection: '',
             success: '',
             message: '',
-            BookingCode: '',
+            BookingCode: localStorage.getItem('code'),
             description: '',
             status: 0,
             errorsArr: [],
@@ -25,7 +25,17 @@ const App = {
         }
     },
     methods: {
-
+        logout() {
+            localStorage.removeItem('token')
+            localStorage.removeItem('username')
+            localStorage.removeItem('first_name')
+            localStorage.removeItem('last_name')
+            // localStorage.removeItem('birth_date')
+            localStorage.removeItem('document_number')
+            this.isLoggedIn = false
+            this.username = ''
+            location.href = 'index.html'
+        },
         formFeedBack() {
             /**
              * показываем, что что-то происходит, обращаемся к АПИ 

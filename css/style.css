@@ -40,9 +40,10 @@ a {
 
 .error {
     margin: 0 auto;
-    color: red;
-    text-decoration: underline;
+    color: #ffffff;
+    text-decoration: underline solid 1px red;
     width: 80%;
+    margin-bottom: 25px;
 
 }
 

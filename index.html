@@ -100,7 +100,7 @@
                         <input type="date" placeholder="Дата обратно" class=""  id="date2" / style="padding: 24px;">
                     </div>
                     <div class="form_elements">
-                        <input type="number" placeholder="Кол-во пассажиров" class="" id="passengers">
+                        <input type="number" min="1" max="8" placeholder="Кол-во пассажиров" class="" id="passengers">
                     </div>
                     <div class="form_elements">
                         <a href="flight.html" v-else onclick="storage()" class="btn"> Поиск </a>
@@ -288,10 +288,6 @@
                 let selectFrom = document.getElementById('fromlist');
                 let selectTo = document.getElementById('tolist');
 
-                // console.log(airports)
-                // console.log(arrIata)
-                // let opt1 = '';
-                // let opt2 = '';
                 for (var i in arr) {
                     let opt = document.createElement('option');
                     opt.value = arrIata[i];
@@ -311,7 +307,6 @@
             .then(res => res.json())
             .then(res => { 
                 let comments = res.data.comments
-                console.log(comments)
                 let div = '';
                 for (var i in comments) {
                     let elem = document.createElement("div")
