@@ -161,6 +161,7 @@ a {
 .form_flights form .form_elements input{
     padding: 25px;
     width: 200px;
+    font-size: 20px;
     background-color: #ffffff10;
     border: none;
     border-radius: 5px;
