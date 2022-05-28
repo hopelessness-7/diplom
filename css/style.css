@@ -373,11 +373,12 @@ a {
     width: 540px;
     height: 95px;
     background-color: #ffffff10;
+    font-size: 20px;
     border: none;
     border-radius: 5px;
     backdrop-filter: blur(12px); 
     -webkit-backdrop-filter: blur(12px);
-    color: #ffffff50;
+    color: #ffffff;
     margin-bottom: 15px;
     outline: none;
 }
@@ -391,7 +392,8 @@ a {
     border-radius: 5px;
     backdrop-filter: blur(12px); 
     -webkit-backdrop-filter: blur(12px);
-    color: #ffffff50;
+    color: #ffffff;
+    font-size: 25px;
     resize: none;
     margin-bottom: 15px;
     outline: none;
@@ -1236,6 +1238,24 @@ a {
 
 /* Адаптивность */
 
+@media (max-width: 1920px)  {
+    p {
+        font-size: 22px;
+    }
+
+    h1 {
+        font-size: 45px;
+    }
+
+    h2 {
+        font-size: 39px;
+    }
+
+    h3 {
+        font-size: 30px;
+    }
+}
+
 @media (max-width: 1620px)  {
 
     .feedback_body_element {
@@ -1249,6 +1269,22 @@ a {
         display: none;
     }
 
+    p {
+        font-size: 20px;
+    }
+
+    h1 {
+        font-size: 45px;
+    }
+
+    h2 {
+        font-size: 35px;
+    }
+
+    h3 {
+        font-size: 30px;
+    }
+
 }
 
 @media (max-width: 1386px) {
@@ -1259,6 +1295,7 @@ a {
     .body_profile .main .card_user{
         margin-right: 25px
     }
+
 
 }
 
@@ -1286,6 +1323,30 @@ a {
         margin-top: 25px;
         width: 100%;
     }
+
+    .card_stocks {
+        flex-direction: column;
+    }
+
+    .card_stocks .elem {
+        margin: 25px;
+    } 
+
+    p {
+        font-size: 18px;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+
+    h2 {
+        font-size: 30px;
+    }
+
+    h3 {
+        font-size: 26px;
+    }
     
 }
 
@@ -1296,6 +1357,22 @@ a {
 
     .staff .element_img img {
         margin-top: 5px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+
+    h2 {
+        font-size: 30px;
+    }
+
+    h3 {
+        font-size: 26px;
     }
 }
 

@@ -67,9 +67,14 @@
                 <div class="card_booking_title">
                     <h5 class=""> Мои бронирования</h5>
                 </div>
-                <div class="card_booking_body" v-for="b in myBookings">
-                    <p class="">Booking code:</p>
-                    <a href="booking.html" onclick="namef(this.innerHTML)" class="bookingCode">{{ b.code }}</a>
+                <div class="card_booking_body" >
+                    <div v-for="b in myBookings">
+                        <p class="">Код бронирования:</p>
+                        <a href="booking.html" onclick="namef(this.innerHTML)" class="bookingCode">{{ b.code }}</a>
+                    </div>
+                    <div>
+                        
+                    </div>
                 </div>
             </div>
 
@@ -77,7 +82,7 @@
 
     </div>
 
-    <!-- Функция помещения кода бронирования в локальное хранилице для передачи на страницу booking.html -->
+    <!-- Функция помещения кода бронирования в локальное хранилище для передачи на страницу booking.html -->
     <script src="js/option/storage.js"> </script>
 
     <!-- Подключение VUE.JS -->
