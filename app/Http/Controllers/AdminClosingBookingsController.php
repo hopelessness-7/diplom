@@ -10,10 +10,11 @@ use Illuminate\Support\Facades\Validator;
 class AdminClosingBookingsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Маршруты для администратора
      *
      * @return \Illuminate\Http\Response
      */
+    // Показать все заявки на отмену бронирования
     public function index()
     {
         $closing_bookings = Closing_booking::all();
@@ -22,7 +23,7 @@ class AdminClosingBookingsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Обновление существубщей заявки
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Feedback  $feedback
@@ -57,7 +58,7 @@ class AdminClosingBookingsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Удаление заявки
      *
      * @param  \App\Models\Feedback  $feedback
      * @return \Illuminate\Http\Response

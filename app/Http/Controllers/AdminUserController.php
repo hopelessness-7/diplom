@@ -11,10 +11,11 @@ use Illuminate\Support\Facades\Validator;
 class AdminUserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Маршруты для администратора
      *
      * @return \Illuminate\Http\Response
      */
+    // Показ всех пользователей
     public function index()
     {
         $users = User::all();
@@ -23,7 +24,7 @@ class AdminUserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Создание пользователя
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -36,7 +37,6 @@ class AdminUserController extends Controller
             'last_name' => 'required|string',
             'phone' => 'required|string|unique:users',
             'document_number' => 'required|string|max:10|min:10|unique:users',
-            'password' => 'required|string|confirmed|min:6',
             'email' => 'unique:users'
         ]);
 
@@ -61,7 +61,7 @@ class AdminUserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Обновление данных пользователя
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\User  $user
@@ -87,10 +87,7 @@ class AdminUserController extends Controller
 
         $user->update(array_merge(
             $validator->validated(),
-            ['password' => bcrypt($request->password)]
         ));
-
-        // $user->update($input);
 
         return response()->json([
             'message' => 'Successfull',
@@ -100,7 +97,7 @@ class AdminUserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Удаления пользователя
      *
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response

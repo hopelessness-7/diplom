@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class UsersController extends Controller
 {
     /**
-     * Create a new UsersController instance.
+     * Создайте новый экземпляр Usercontroller.
      *
      * @return void
      */
@@ -20,7 +20,7 @@ class UsersController extends Controller
     }
 
     /**
-     * Get a JWT via given credentials.
+     * Авторизация пользователя, создание JWT токена
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -44,7 +44,7 @@ class UsersController extends Controller
                 'error' => [
                     'code' => 401,
                     'message' => 'Unauthorized',
-                    'errors' => 'Ошибка входа, проверте правильно написания телефона и/или пароля'
+                    'errors' => 'Ошибка входа, проверьте правильное написания телефона и/или пароля'
                 ]
             ], 401);
         }
@@ -54,7 +54,7 @@ class UsersController extends Controller
 
 
     /**
-     * Register a User.
+     * Регистрация пользователя
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -88,7 +88,7 @@ class UsersController extends Controller
     }
 
     /**
-     * Get the authenticated User.
+     * Получите аутентифицированного пользователя.
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -103,6 +103,7 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
+    // Генерация токена
     protected function createNewToken($token){
         return response()->json([
             'access_token' => $token,
@@ -112,6 +113,7 @@ class UsersController extends Controller
         ]);
     }
 
+    // Получение свих бронирований
     public function getMyBookings()
     {
         $documentNumber = auth()->user()->document_number;
@@ -123,7 +125,6 @@ class UsersController extends Controller
         ])
             ->where('document_number', $documentNumber)->get()
             ->map(function($r) {
-                // $r->booking->flight_from->from_airport->date = $r->booking->date_from;
                 return $r->booking;
             })->toArray();
 

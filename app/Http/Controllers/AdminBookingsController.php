@@ -9,10 +9,11 @@ use Illuminate\Http\Response;
 class AdminBookingsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Маршруты для администратора
      *
      * @return \Illuminate\Http\Response
      */
+    // Получения всех бронирований
     public function index()
     {
         $bookings = Booking::all();
@@ -61,7 +62,7 @@ class AdminBookingsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Удаление бронирования
      *
      * @param  \App\Models\Booking  $booking
      * @return \Illuminate\Http\Response

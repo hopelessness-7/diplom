@@ -12,10 +12,11 @@ use Illuminate\Support\Facades\Validator;
 class AdminPassengersController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Маршруты для администратора
      *
      * @return \Illuminate\Http\Response
      */
+    // Показать всех пассажиров
     public function index()
     {
         $passengers = Passenger::all();
@@ -24,7 +25,7 @@ class AdminPassengersController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Удаления пассажира
      *
      * @param  \App\Models\passenger  $passenger
      * @return \Illuminate\Http\Response

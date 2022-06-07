@@ -12,10 +12,11 @@ use Illuminate\Support\Facades\Validator;
 class AdminFlightsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Маршруты для администратора
      *
      * @return \Illuminate\Http\Response
      */
+    // Показать все рейсы
     public function index()
     {
         $flights = Flight::all();
@@ -24,7 +25,7 @@ class AdminFlightsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Создание нового рейса
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -59,7 +60,7 @@ class AdminFlightsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Обновление существующего рейса.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\flight  $flight
@@ -94,7 +95,7 @@ class AdminFlightsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Удаление рейса
      *
      * @param  \App\Models\flight  $flight
      * @return \Illuminate\Http\Response

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class ClosingBookingsController extends Controller
 {
+    // Создание заявки на отмену бронирования - для клилента (пользователя)
     public function store(Request $request, Closing_booking $Closing_booking)
     {
         $validator = Validator::make($request->all(), [

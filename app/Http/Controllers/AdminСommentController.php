@@ -11,10 +11,11 @@ use Illuminate\Support\Facades\Validator;
 class AdminСommentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Маршруты для администратора
      *
      * @return \Illuminate\Http\Response
      */
+    // Получение всех комментариев
     public function index()
     {
         $comments = Comment::all();
@@ -24,7 +25,7 @@ class AdminСommentController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
+     * Создание комментария
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -56,7 +57,7 @@ class AdminСommentController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Обновление существующего комментария
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Comment  $comment
@@ -90,7 +91,8 @@ class AdminСommentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     *
+     * удаление комментария
      *
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response

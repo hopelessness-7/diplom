@@ -14,12 +14,12 @@ class FlightsController extends Controller
         $inputData = $request->all();
         $rules = [
             /**
-             * exists rule checks whether iata exists in the table
+             * проверяет существует ли iata в таблице
              */
             'from' => 'required|exists:airports,iata',
             'to' => 'required|exists:airports,iata',
-            'date1' => 'required|date_format:Y-m-d', // departure date, example:2020-10-01
-            'date2' => 'date_format:Y-m-d', // getting back date
+            'date1' => 'required|date_format:Y-m-d', // дата отправления, например:2020-10-01
+            'date2' => 'date_format:Y-m-d', // дата обратно
             'passengers' => 'required|integer|min:1|max:8'
         ];
 
@@ -53,8 +53,8 @@ class FlightsController extends Controller
         ]);
 
         /**
-         * check if date2 parameter exists
-         * if exixts, then another query
+         * существует ли параметр date2
+         * если существует, то другой запрос
          */
         if(isset($inputData['date2'])) {
             $query = Flight::where([
@@ -70,8 +70,8 @@ class FlightsController extends Controller
         }
 
         /**
-         * Above query string has been built
-         * Send a request to Database just one time
+         * Приведенная выше строка запроса была построена
+         * Отправить запрос в базу данных только один раз
          */
         $flights = $query->get()->toArray();
 

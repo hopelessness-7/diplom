@@ -20,10 +20,9 @@ class BookingsController extends Controller
             'flight_from.date' => 'required|date_format:Y-m-d',
 
             /**
-             * return back flight - if needed
+             * обратный рейс - при необходимости
              *
-             * required_with rule: flight_back.id & flight_back.date required
-             * if flight_back field exist
+             * если существует поле flight_back
              */
             'flight_back.id' => 'required_with:flight_back|exists:flights,id',
             'flight_back.date' => 'required_with:flight_back|date_format:Y-m-d',
@@ -61,8 +60,8 @@ class BookingsController extends Controller
             }
 
             /**
-             * generate a flight CODE, which doesn't exist in DB
-             * generate until a code is unique
+             * сгенерировать КОД рейса, которого нет в базе данных
+             * генерировать до тех пор, пока код не станет уникальным
              */
             $code = '';
             while (true) {
@@ -92,7 +91,7 @@ class BookingsController extends Controller
         } catch (\Throwable $th) {
 
             /**
-             * Rollback transaction if error occured
+             * Откат транзакции, если произошла ошибка
              */
             DB::rollback();
 
@@ -215,7 +214,7 @@ class BookingsController extends Controller
         }
 
         /**
-         * If the booking doesn't have flight_back
+         * Если в бронировании нет обратного рейса
          */
         if($inputData['type'] == 'back') {
             if (!$booking->flight_back) {
@@ -229,7 +228,7 @@ class BookingsController extends Controller
         }
 
         /**
-         * If Passenger does not apply to booking
+         * Проверка на то, что пассажир принадлежит к бронированию
          */
         $passenger = $booking->passengers->find($inputData['passenger']);
         if (!$passenger) {
@@ -242,19 +241,19 @@ class BookingsController extends Controller
         }
 
         /**
-         * If seat is occupied
+         * Если место занято
          */
         $placeFromOrBack = $inputData['type'] == 'back' ? 'place_back' : 'place_from';
 
         if($inputData['type'] == 'from') {
             /**
-             * get all bookings for one flight_from
+             * получить все Бронирования на один рейс
              */
             $allFromFlightsBookings = Flight::find($booking->flight_from)->from_flights_bookings()->with('passengers')->get();
 
             foreach ($allFromFlightsBookings as $b) {
                 /**
-                 * get all the passengers for one flight_from & check their seats
+                 * собрать всех пассажиров на один рейс и проверьте их места
                  */
                 foreach ($b->passengers as $p) {
                     if ($p->{$placeFromOrBack} == strtoupper($inputData['seat'])) {
@@ -277,7 +276,7 @@ class BookingsController extends Controller
 
             foreach ($allBackFlightsBookings as $b) {
                 /**
-                 * get all the passengers for one flight_back & check their seats
+                 * собрать всех пассажиров на один обратный рейс и проверьте их места
                  */
                 foreach ($b->passengers as $p) {
                     if ($p->{$placeFromOrBack} == strtoupper($inputData['seat'])) {

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class FeedBackController extends Controller
 {
+    // Создания заявки на обратную связь - для клилента (пользователя)
     public function store(Request $request, FeedBack $feedBack)
     {
         $validator = Validator::make($request->all(), [

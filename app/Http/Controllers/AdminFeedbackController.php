@@ -12,10 +12,11 @@ use Illuminate\Support\Facades\Validator;
 class AdminFeedbackController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Маршруты для администратора
      *
      * @return \Illuminate\Http\Response
      */
+    // Показать все заявки на обратную связь
     public function index()
     {
         $feedbacks = Feedback::all();
@@ -24,7 +25,7 @@ class AdminFeedbackController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Обновление существуюшей зявки
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Feedback  $feedback
@@ -61,7 +62,7 @@ class AdminFeedbackController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Удаление заявки
      *
      * @param  \App\Models\Feedback  $feedback
      * @return \Illuminate\Http\Response

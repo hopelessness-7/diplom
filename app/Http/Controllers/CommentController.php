@@ -7,14 +7,10 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+    // Получения всех коментариев для клиента (пользователя)
     public function index()
     {
         $comments = Comment::all();
-
-        // foreach ($comments as $key => $comment) {
-        //     $arrCommentName [] = $comment->nameUser;
-        //     $arrComment [] = $comment->comment;
-        // };
 
         return response()->json([
             'data'=> [

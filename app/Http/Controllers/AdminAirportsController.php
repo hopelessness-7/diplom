@@ -11,10 +11,11 @@ use Illuminate\Support\Facades\Validator;
 class AdminAirportsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Маршруты для администратора
      *
      * @return \Illuminate\Http\Response
      */
+    // Получение всех аэропортов
     public function index()
     {
         $airports = Airport::all();
@@ -22,7 +23,7 @@ class AdminAirportsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Создание нового аэропорта
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -54,7 +55,7 @@ class AdminAirportsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Обновление существующего аэропорта
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\airport  $airport
@@ -90,7 +91,7 @@ class AdminAirportsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Удаление аэропорта
      *
      * @param  \App\Models\airport  $airport
      * @return \Illuminate\Http\Response
